@@ -4,7 +4,43 @@
     margin: 15rem 0;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-columns: repeat(3, 1fr); */
     /* 3 equally sized columns */
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    /* Auto will create as many tracks as can fit in the width we define */
     grid-gap: 6rem;
+
+    align-items: start;
+    /* Without this, items are automatically stretched, so they're not all aligned.
+    Now they're all aligned */
+}
+
+.feature {
+
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    /* The first column is the icon so we can put 4.5rem. 
+    But by having min-content, if we change the icon size in the future, this will adjust to that size */
+    /* The content defines the columns */
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+    /* These will add some spacing between the grids. So no need for margin this or margin that */
+    
+    &__icon {
+        fill: $color-primary;
+        /* To color the SVG's */
+        width: 4.5rem;
+        height: 4.5rem;
+        grid-row: 1 / span 2;
+        /* -1 only means end of EXPLICIT grid, NOT implicit.
+        So we use span instead */
+        /* Now, the icon will push the text to the right side */
+        transform: translateY(-1rem)
+        /* Transforms still work in grid*/
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
+
 }
